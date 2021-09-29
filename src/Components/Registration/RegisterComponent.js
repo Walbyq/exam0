@@ -12,15 +12,14 @@ class RegisterComponent extends React.Component {
   async response(){
     let md5 = require('md5');
     let token = md5(`${this.login.current.value}${this.password.current.value}`);
-    const answer = await fetch(`http://shporhub/api/index.php/?method=login&hash=${token}`);
+    const answer = await fetch(`http://shporhub/api/index.php/?method=registration&hash=${token}`);
     const result = await answer.json();
     return result;
   }
 
   async Register(){
     let response = await this.response();
-    if(false){
-      //внести пользователя в БД
+    if(response.data.access){
       this.props.history.push('/login');
     } else {
       this.login.current.classList.add(CSS.wrongInput);

@@ -1,7 +1,6 @@
 .page_horizontal {
-    display: flex;
-    flex-direction: row;
     padding: 90px 50px;
+    overflow-x: hidden;
   }
   
   .content {
@@ -10,7 +9,6 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    padding-right: 260px;
   }
   
   .content .subject {
@@ -18,21 +16,50 @@
     font-size: 30px;
     margin-bottom: 20px;
   }
+  .menu_wrapper{
+    display: flex;
+    flex-direction: row;
+    right: 0;
+    margin-left: 0;
+    left: 0;
+    bottom: 0;
+    justify-content: right;
+    width: 100%;
+    position: fixed;
+    top: 70px;
+    transition: 1s;
+  }
   
   .nav_menu {
-    height: 100%;
+    width: 270px;
+    height: 100vh;
     background-color: #2b2b2b;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    position: fixed;
     overflow-y: scroll;
-    top: 70px;
-    right: 0;
     padding: 100px 20px;
     padding-top: 0;
+  }
+
+  .turnOff{
+    width: 30px;
+    height: 100vh;
+    color: #141414;
+    background-color: #00dab2;
+    box-shadow: 0 0 0 #00dab2;
     transition: 1s;
+    outline: none;
+  }
+
+  .hide_menu{
+    margin-left: 270px;
+  }
+
+  .turnOff:hover {
+    box-shadow: 0 0 20px #00dab2;
+    cursor: pointer;
   }
   
   .standartButton{
@@ -52,12 +79,7 @@
     transition: 0s;
     box-shadow: 0 0 60px #00dab2;
   }
-  
-  .nav_menu:hover {
-    box-shadow: 0 0 10px #00dab2;
-    transition: 0s;
-  }
-  
+
   
   .nav_menu label {
     color: #686868;

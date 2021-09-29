@@ -10,9 +10,17 @@ class MainPageLogComponent extends React.Component {
     this.subjects = [['Мат.анализ', 'mat_analiz'], ['Алгебра и геометрия','aig'], ['Основы прогр-я','osnovi_programmirovaniya'], ['Дискретка','diskretka']];
     this.arr = [1,2,3,4,5,6,7,8,9];
     this.currentSubject = React.createRef();
+    this.navMenu = React.createRef();
   }
   ChangeSubject(link){
     this.currentSubject.current.innerHTML = 'Шпоры по предмету: ' + link.target.innerHTML;
+  }
+  HideOrOpenMenu(){
+    if(this.navMenu.current.classList.contains(CSS.hide_menu)){
+      this.navMenu.current.classList.remove(CSS.hide_menu);
+    } else {
+      this.navMenu.current.classList.add(CSS.hide_menu);
+    }
   }
   render(){
     return (
@@ -23,16 +31,19 @@ class MainPageLogComponent extends React.Component {
                 <Post/>
               ))}
             </div>
-            <div className={CSS.nav_menu}>
-              <label>Предметы</label>
-              {
-                this.subjects.map((value, index) => (
-                  <NavLink onClick={this.ChangeSubject.bind(this)} to={`/main-menu/${value[1]}`} key={index} className={CSS.standartButton} activeClassName={CSS.choosenButton}>{value[0]}</NavLink>
-                ))
-              }
-              <label>Остальное</label>       
-              <NavLink to='/add-shpor' className={CSS.standartButton}>Опубликовать шпору</NavLink> 
-            </div>
+            <div ref={this.navMenu} className={CSS.menu_wrapper}>
+              <button onClick={() => this.HideOrOpenMenu()} className={CSS.turnOff}></button>
+              <div className={CSS.nav_menu}>
+                <label>Предметы</label>
+                {
+                  this.subjects.map((value, index) => (
+                    <NavLink onClick={this.ChangeSubject.bind(this)} to={`/main-menu/${value[1]}`} key={index} className={CSS.standartButton} activeClassName={CSS.choosenButton}>{value[0]}</NavLink>
+                  ))
+                }
+                <label>Остальное</label>       
+                <NavLink to='/add-shpor' className={CSS.standartButton}>Опубликовать шпору</NavLink> 
+              </div>
+            </div> 
         </div>
     );
   }

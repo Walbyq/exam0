@@ -15,8 +15,18 @@ class App extends React.Component {
     super();
     this.state = {
       logged: false,
-      nickname: ''
+      nickname: '',
+      course: 1,
+      direction: 'ivt'
     }
+  }
+
+  SetDirection(current){
+    this.setState({direction: current});
+  }
+
+  SetCourse(current){
+    this.setState({course: current});
   }
 
   Log(loggin, nickname){
@@ -35,7 +45,12 @@ class App extends React.Component {
           <Route path='/login' component={() => <LoginComponent log={(loggin, nickname) => this.Log(loggin, nickname)}/>}/>
           <Route path='/registration' component={RegisterComponent}/>
           <Route path='/sphora' component={() => <ShporComponent isLogged={this.state.logged}/>}/>
-          <Route path='/profile' component={() => <ProfileComponent nickname={this.state.nickname}/>}/>
+          <Route path='/profile' component={() => <ProfileComponent 
+              setDirection={current => this.SetDirection(current)}
+              setCourse={current => this.SetCourse(current)}  
+              course={this.state.course}
+              direction={this.state.direction}
+              nickname={this.state.nickname}/>}/>
           <Route path='/add-shpor' component={AddShporComponent}/>
         </div>
       </BrowserRouter>
