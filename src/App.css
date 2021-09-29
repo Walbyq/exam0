@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist&display=swap');
+*{
+  padding: 0;
+  margin: 0;
+  border: none;
+  text-decoration: none;
+  list-style: none;
+  box-sizing: border-box;
+  font-family: 'Urbanist', sans-serif;
+}
+
+body {
+  background-color: #141414;
+}
+
+.standartButton{
+  padding: 5px 10px;
+  background-color: #474747;
+  border-radius: 4px;
+  color: #141414;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: 1s;
+}
+
+.standartButton:hover{
+  background-color: #00dab2;
+  transition: 0s;
+  box-shadow: 0 0 60px #00dab2;
+}
+
+/*Page*/
+
+.page {
+  padding: 90px 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+  
+.title {
+  font-size: 30px;
+  color: #686868;
+  margin-bottom: 20px;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+  background-color: #141414;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #686868;
+}
