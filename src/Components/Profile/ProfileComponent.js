@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 class ProfileComponent extends React.Component {
   constructor(props){
     super(props);
+    this.course = React.createRef();
   }
   async changeCourse(){
     await fetch(`http://shporhub/api/index.php/?method=updateProfile`);
@@ -15,16 +16,10 @@ class ProfileComponent extends React.Component {
     const result = await answer.json();
     return result;
   }
-  async getData(){
-    return await this.response();
-  }
-  updateData(){
-    let response = this.getData();
-    if(response){
-      let setCourse = this.props.setCourse();
-      let setDirection = this.props.setDirection();
-      setCourse(response.data.course);
-      setDirection(response.data.direction);
+  async updateData(){
+    let response = await this.response();
+    if(response.data){
+      this.course.current.value = response.data.course;
     }
   }
   componentDidMount(){
@@ -38,18 +33,18 @@ class ProfileComponent extends React.Component {
             <label className={CSS.title}>
               Курс
               <select onChange={() => this.changeCourse()} ref={this.course} className={CSS.standartSelect}>
-                <option selected={(this.props.course === 1) ? true : false} value="1">1</option>
-                <option selected={(this.props.course === 2) ? true : false} value="2">2</option>
-                <option selected={(this.props.course === 3) ? true : false} value="3">3</option>
-                <option selected={(this.props.course === 4) ? true : false} value="4">4</option>
+                <option  value="1">1</option>
+                <option  value="2">2</option>
+                <option  value="3">3</option>
+                <option  value="4">4</option>
               </select>
             </label>
             <label className={CSS.title}>
               Направление
               <select className={CSS.standartSelect}>
-                <option selected={(this.props.direction === 'ivt') ? true : false} value="ivt">ИиВТ</option>
-                <option selected={(this.props.direction === 'is') ? true : false} value="is">ИС</option>
-                <option selected={(this.props.direction === 'pi') ? true : false} value="pi">ПИ</option>
+                <option  value="ivt">ИиВТ</option>
+                <option  value="is">ИС</option>
+                <option  value="pi">ПИ</option>
               </select>
             </label>
             <button className={CSS.standartButton}>Сохранить изменения</button>

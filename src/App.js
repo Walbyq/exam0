@@ -15,9 +15,7 @@ class App extends React.Component {
     super();
     this.state = {
       logged: false,
-      nickname: '',
-      course: 1,
-      direction: 'ivt'
+      nickname: ''
     }
   }
 
