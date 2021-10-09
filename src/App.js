@@ -13,10 +13,24 @@ import { Route, BrowserRouter } from 'react-router-dom';
 class App extends React.Component {
   constructor(){
     super();
+    console.log(window.localStorage.getItem('logged'));
     this.state = {
-      logged: false,
-      nickname: ''
+      logged: window.localStorage.getItem('logged'),
+      nickname: window.localStorage.getItem('nickname'),
+      lessons: []
     }
+    this.getLessons();
+    console.log(window.localStorage.getItem('logged'));
+  }
+
+  async response(){
+    const answer = await fetch(`http://shporhub/api/index.php/?method=getLessons`);
+    const result = await answer.json();
+    return result;
+  }
+  async getLessons(){
+    let response = await this.response();
+    this.setState({lessons: response.data});
   }
 
   SetDirection(current){
@@ -26,11 +40,21 @@ class App extends React.Component {
   SetCourse(current){
     this.setState({course: current});
   }
+  SetLocalStorage(){
+    if(!window.localStorage.getItem('logged')){
+      
+    }
+  }
 
-  Log(loggin, nickname){
-    this.setState({logged: loggin, nickname: nickname});
+  Log(nickname){
+    window.localStorage.setItem('logged', true);
+    window.localStorage.setItem('nickname', nickname);
+    this.setState({logged: true, nickname: nickname});
   }
   Logout(){
+    window.localStorage.setItem('logged', false);
+    console.log(window.localStorage.getItem('logged'));
+    window.localStorage.setItem('nickname', null);
     this.setState({logged: false});
   }
   render(){
@@ -39,8 +63,8 @@ class App extends React.Component {
         <div className="app">
           <HeaderComponent nickname={this.state.nickname} isLogged={this.state.logged} logout={() => this.Logout()}/>
           <Route exact path='/' component={MainPageUnLogComponent}/>
-          <Route path='/main-menu' component={MainPageLogComponent}/>
-          <Route path='/login' component={() => <LoginComponent log={(loggin, nickname) => this.Log(loggin, nickname)}/>}/>
+          <Route path='/main-menu' component={()=><MainPageLogComponent lessons={this.state.lessons}/>}/>
+          <Route path='/login' component={() => <LoginComponent log={(nickname) => this.Log(nickname)}/>}/>
           <Route path='/registration' component={RegisterComponent}/>
           <Route path='/sphora' component={() => <ShporComponent isLogged={this.state.logged}/>}/>
           <Route path='/profile' component={() => <ProfileComponent 

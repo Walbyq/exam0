@@ -21,7 +21,8 @@ header .logo {
 }
 
 header .logo:hover {
-    cursor: default;
+    cursor: pointer;
+    color: #094aed;
 }
   
 header .logo span {
@@ -32,6 +33,12 @@ header .logo span {
     margin-left: 2px;
     background-color: #00DAB2;
     box-shadow: 0 0 60px #00dab2;
+    transition: 0.5s;
+}
+  
+header .logo span:hover { 
+    background-color: #094aed;
+    box-shadow: 0 0 60px #094aed;
 }
 
 header .nickname {

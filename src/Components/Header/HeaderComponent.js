@@ -10,11 +10,19 @@ class HeaderComponent extends React.Component {
     this.props.logout();
     this.props.history.push('/');
   }
+  LogoClick(){
+    if(this.props.isLogged){
+      this.props.history.push('/main-menu');
+    } else {
+      this.props.history.push('/');
+    }
+  }
   render(){
     return (
         <header>
-            <div className={HeaderCSS.logo}>Shpor<span>Hub</span></div>
+            <div onClick={() => this.LogoClick()} className={HeaderCSS.logo}>Shpor<span>Hub</span></div>
             {
+            console.log(window.localStorage.getItem('logged'),this.props.isLogged),
             (this.props.isLogged) 
               ? 
               <div>
