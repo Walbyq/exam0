@@ -1,37 +1,37 @@
-import React from 'react';
-import { NavLink, withRouter } from 'react-router-dom';
-import CSS from './Register.Module.css';
+import React from "react";
+import { NavLink, withRouter, useHistory } from "react-router-dom";
+import CSS from "./Register.Module.css";
 
-class RegisterComponent extends React.Component {
-  constructor(props){
-    super(props);
-    this.login = React.createRef();
-    this.password = React.createRef();
-  }
+const RegisterComponent = (props) => {
+  const login = React.createRef();
+  const password = React.createRef();
+  const history = useHistory();
 
-  async response(){
-    let md5 = require('md5');
-    let token = md5(`${this.login.current.value}${this.password.current.value}`);
-    const answer = await fetch(`http://shporhub/api/index.php/?method=registration&hash=${token}`);
+  const Response = async function () {
+    const md5 = require("md5");
+    const token = md5(`${login.current.value}${password.current.value}`);
+    const answer = await fetch(
+      `http://shporhub/api/index.php/?method=registration&hash=${token}`
+    );
     const result = await answer.json();
     return result;
-  }
+  };
 
-  async Register(){
-    let response = await this.response();
-    if(response.data.access){
-      this.props.history.push('/login');
+  const Register = async function () {
+    const response = await Response();
+    if (response.data.access) {
+      props.history.push("/login");
     } else {
-      this.login.current.classList.add(CSS.wrongInput);
-      this.password.current.classList.add(CSS.wrongInput);
+      login.current.classList.add(CSS.wrongInput);
+      password.current.classList.add(CSS.wrongInput);
     }
-  }
+  };
 
-  ChangeInput(input){
-    this.login.current.classList.remove(CSS.wrongInput);
-    this.password.current.classList.remove(CSS.wrongInput);
-    if(input.current.value !== ''){
-      if(input.current.value.length >= 6){
+  const ChangeInput = (input) => {
+    login.current.classList.remove(CSS.wrongInput);
+    password.current.classList.remove(CSS.wrongInput);
+    if (input.current.value !== "") {
+      if (input.current.value.length >= 6) {
         input.current.classList.add(CSS.activeInput);
       } else {
         input.current.classList.add(CSS.wrongInput);
@@ -39,20 +39,30 @@ class RegisterComponent extends React.Component {
     } else {
       input.current.classList.remove(CSS.activeInput);
     }
-  }
-  render(){
-    return (
-        <div className={CSS.wrapper}>
-            <div className={CSS.registration}>
-                <label>Регистрация</label>
-                <input ref={this.login} onChange={() => this.ChangeInput(this.login)} className={CSS.input} placeholder="Логин(> 6 символов)"/>
-                <input ref={this.password} onChange={() => this.ChangeInput(this.password)} className={CSS.input} placeholder="Пароль(> 6 символов)"/>
-                <button className={CSS.standartButton} onClick={() => this.Register()}>Зарегистрироваться</button>
-                <NavLink to=''>Назад в меню</NavLink>
-            </div>
-        </div>
-    );
-  }
-}
+  };
+  return (
+    <div className={CSS.wrapper}>
+      <div className={CSS.registration}>
+        <label>Регистрация</label>
+        <input
+          ref={login}
+          onChange={() => ChangeInput(login)}
+          className={CSS.input}
+          placeholder="Логин(> 6 символов)"
+        />
+        <input
+          ref={password}
+          onChange={() => ChangeInput(password)}
+          className={CSS.input}
+          placeholder="Пароль(> 6 символов)"
+        />
+        <button className={CSS.standartButton} onClick={Register}>
+          Зарегистрироваться
+        </button>
+        <NavLink to="">Назад в меню</NavLink>
+      </div>
+    </div>
+  );
+};
 
 export default withRouter(RegisterComponent);
