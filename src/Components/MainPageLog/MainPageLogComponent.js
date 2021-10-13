@@ -3,23 +3,6 @@ import Post from '../Post/Post';
 import CSS from './MainPageLog.Module.css';
 import { NavLink } from 'react-router-dom';
 
-<<<<<<< Updated upstream
-class MainPageLogComponent extends React.Component {
-  constructor(props){
-    super(props);
-    this.subject = 'Мат.анализ';
-    this.arr = [1,2,3,4,5,6,7,8,9];
-    this.currentSubject = React.createRef();
-    this.navMenu = React.createRef();
-  }
-  ChangeSubject(link){
-    this.currentSubject.current.innerHTML = 'Шпоры по предмету: ' + link.target.innerHTML;
-  }
- 
-  HideOrOpenMenu(){
-    if(this.navMenu.current.classList.contains(CSS.hide_menu)){
-      this.navMenu.current.classList.remove(CSS.hide_menu);
-=======
 const MainPageLogComponent = (props) => {
   const {getLessons} = props;
   let lessons = [];
@@ -38,12 +21,10 @@ const MainPageLogComponent = (props) => {
   const HideOrOpenMenu = () => {
     if (navMenu.current.classList.contains(CSS.hide_menu)) {
       navMenu.current.classList.remove(CSS.hide_menu);
->>>>>>> Stashed changes
     } else {
       this.navMenu.current.classList.add(CSS.hide_menu);
     }
   }
-  render(){
     return (
         <div className={CSS.page_horizontal}>
             <div className={CSS.content}>
@@ -68,7 +49,6 @@ const MainPageLogComponent = (props) => {
             </div> 
         </div>
     );
-  }
 }
 
 export default MainPageLogComponent;
