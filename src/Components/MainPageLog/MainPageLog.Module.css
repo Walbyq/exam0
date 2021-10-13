@@ -19,15 +19,13 @@
 .menu_wrapper{
   display: flex;
   flex-direction: row;
-  right: 0;
-  margin-left: 0;
-  left: 0;
-  bottom: 0;
-  justify-content: right;
-  width: 100%;
+  justify-content: center;
+  width: fit-content;
   position: fixed;
+  right: 0;
   top: 70px;
   transition: 1s;
+  z-index: 13;
 }
 
 .nav_menu {
@@ -41,7 +39,7 @@
   overflow-y: scroll;
   padding: 100px 20px;
   padding-top: 0;
-  z-index: 11;
+  
 }
 
 .turnOff{
@@ -55,7 +53,7 @@
 }
 
 .hide_menu{
-  margin-left: 270px;
+  right: -270px;
 }
 
 .turnOff:hover {

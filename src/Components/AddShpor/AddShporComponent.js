@@ -1,6 +1,6 @@
-import React from 'react';
-import CSS from './AddShpor.Module.css';
-import { NavLink } from 'react-router-dom';
+import React from "react";
+import CSS from "./AddShpor.Module.css";
+import { NavLink } from "react-router-dom";
 
 const AddShporComponent = () => {
   const file = React.createRef();

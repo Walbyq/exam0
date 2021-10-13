@@ -1,7 +1,7 @@
-import React from 'react';
-import Post from '../Post/Post';
-import CSS from './MainPageLog.Module.css';
-import { NavLink } from 'react-router-dom';
+import React from "react";
+import Post from "../Post/Post";
+import CSS from "./MainPageLog.Module.css";
+import { NavLink } from "react-router-dom";
 
 const MainPageLogComponent = (props) => {
   const {getLessons} = props;
@@ -22,9 +22,9 @@ const MainPageLogComponent = (props) => {
     if (navMenu.current.classList.contains(CSS.hide_menu)) {
       navMenu.current.classList.remove(CSS.hide_menu);
     } else {
-      this.navMenu.current.classList.add(CSS.hide_menu);
+      navMenu.current.classList.add(CSS.hide_menu);
     }
-  }
+  };
     return (
         <div className={CSS.page_horizontal}>
             <div className={CSS.content}>
@@ -50,5 +50,16 @@ const MainPageLogComponent = (props) => {
         </div>
     );
 }
+/*
+<NavLink
+                onClick={ChangeSubject}
+                to={`/main-menu/${element.link}`}
+                key={index}
+                className={CSS.standartButton}
+                activeClassName={CSS.choosenButton}
+              >
+                {element.name}
+              </NavLink>
+*/
 
 export default MainPageLogComponent;
