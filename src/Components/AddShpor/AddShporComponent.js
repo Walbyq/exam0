@@ -21,15 +21,15 @@ const AddShporComponent = () => {
       return;
     }
     for(let i = 0; i < fileQuestions.current.files.length; i++){
-      data.append("file", fileQuestions.current.files[i]);
+      data.append(`questions_${i}`, fileQuestions.current.files[i]);
     }
     for(let i = 0; i < fileAnswers.current.files.length; i++){
-      data.append("file", fileAnswers.current.files[i]);
+      data.append(`answers_${i}`, fileAnswers.current.files[i]);
     }
-    data.append("file", textData.current.value);
-    data.append("file", textType.current.value);
+    data.append("data", textData.current.value);
+    data.append("type", textType.current.value);
     if(textDescription.current.value){
-      data.append("file", textDescription.current.value);
+      data.append("description", textDescription.current.value);
     }
     console.log(data);
     fetch("http://shporhub/api/index.php/?method=uploadShpora", {
