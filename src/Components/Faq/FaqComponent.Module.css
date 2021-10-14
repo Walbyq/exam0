@@ -1,0 +1,21 @@
+.faq {
+    padding: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+}
+
+.title {
+    font-size: 33px;
+    color: #00dab2;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.info {
+    font-size: 20px;
+    color: #b1b1b1;
+}

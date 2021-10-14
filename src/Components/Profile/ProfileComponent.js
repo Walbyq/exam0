@@ -53,9 +53,6 @@ const ProfileComponent = (props) => {
         </select>
       </label>
       <button className={CSS.standartButton}>Сохранить изменения</button>
-      <NavLink to="/main-menu/mat_analiz" className={CSS.standartButton}>
-        Назад в меню
-      </NavLink>
     </div>
   );
 };

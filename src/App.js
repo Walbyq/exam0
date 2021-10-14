@@ -6,15 +6,18 @@ import RegisterComponent from "./Components/Registration/RegisterComponent";
 import ShporComponent from "./Components/Shpora/ShporComponent";
 import AddShporComponent from "./Components/AddShpor/AddShporComponent";
 import ProfileComponent from "./Components/Profile/ProfileComponent";
+import FaqComponent from "./Components/Faq/FaqComponent";
 import "./App.css";
 import React, { useState } from "react";
 import { Route, BrowserRouter } from "react-router-dom";
+
 
 const App = () => {
   const [logged, setLogged] = useState(false);
   const [nickname, setNickname] = useState("");
   const [course, setCourse] = useState(1);
   const [direction, setDirection] = useState("iivt");
+  const [lessons, setLessons] = useState([]);
 
   const Responce = async function () {
     const answer = await fetch(
@@ -46,13 +49,13 @@ const App = () => {
         <Route
           path="/main-menu"
           component={() => (
-            <MainPageLogComponent getLessons={GetLessons} />
+            <MainPageLogComponent lessons={lessons} setLessons={setLessons} getLessons={GetLessons} />
           )}
         />
         <Route
           path="/login"
           component={() => (
-            <LoginComponent log={(nickname) => Login(nickname)} />
+            <LoginComponent loginFunc={nickname => Login(nickname)} />
           )}
         />
         <Route path="/registration" component={RegisterComponent} />
@@ -73,6 +76,7 @@ const App = () => {
           )}
         />
         <Route path="/add-shpor" component={AddShporComponent} />
+        <Route path="/faq" component={FaqComponent}/>
       </div>
     </BrowserRouter>
   );

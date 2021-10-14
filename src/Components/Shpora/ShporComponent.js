@@ -7,12 +7,6 @@ const ShporComponent = (props) => {
   const {isLogged} = props;
   return (
     <div className={CSS.wrapper}>
-      <NavLink
-        to={isLogged ? "main-menu" : "/"}
-        className={CSS.standartButton}
-      >
-        Назад
-      </NavLink>
       <div className={CSS.page}>
         <div className={CSS.answers}>
           <label className={CSS.title}>Вариант 1</label>

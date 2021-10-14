@@ -6,7 +6,7 @@ const LoginComponent = (props) => {
   const login = React.createRef();
   const password = React.createRef();
   const history = useHistory();
-  const {log} = props;
+  const {loginFunc} = props;
 
   const Response = async function () {
     const md5 = require("md5");
@@ -26,7 +26,7 @@ const LoginComponent = (props) => {
     password.current.classList.remove(CSS.wrongInput);
     let response = await Response();
     if (response.result === "ok") {
-      log(login.current.value);
+      loginFunc(login.current.value);
       history.push("/main-menu/mat_analiz");
     } else {
       login.current.classList.add(CSS.wrongInput);
